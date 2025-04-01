@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Studynest - AI Study Assistant</title>
+    <meta name="description" content="Your AI-powered study companion for academic excellence" />
+    <meta name="author" content="Lovable" />
+
+    <meta property="og:title" content="studynest - AI Study Assistant" />
+    <meta property="og:description" content="Your AI-powered study companion for academic excellence" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@lovable_dev" />
+    <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    <link rel="stylesheet" href="styles.css">
+  </head>
+
+  <body class="bg-dark text-light">
+    <div class="particles-container" id="particles-js"></div>
+    
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-transparent">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+          <span class="text-gradient">Studynest</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        
+        <!-- Menu toggle button -->
+        <button class="btn btn-dark d-lg-none me-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#sideMenu">
+          <i class="fas fa-bars"></i>
+        </button>
+        
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <!-- Left side menu button -->
+          <button class="btn btn-dark d-none d-lg-block me-3" type="button" data-bs-toggle="offcanvas" data-bs-target="#sideMenu">
+            <i class="fas fa-bars"></i>
+          </button>
+          
+          <ul class="navbar-nav me-auto">
+            <!-- Home Dropdown -->
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="homeDropdown" role="button" data-bs-toggle="dropdown">
+                Home
+              </a>
+              <ul class="dropdown-menu dropdown-menu-dark">
+                <li><a class="dropdown-item" href="dashboard.html">Dashboard</a></li>
+                <li><a class="dropdown-item" href="trending.html">Trending Topics</a></li>
+                <li><a class="dropdown-item" href="recent.html">Recent Chats</a></li>
+              </ul>
+            </li>
+          
+            <!-- PYQs Dropdown -->
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="pyqDropdown" role="button" data-bs-toggle="dropdown">
+                PYQs
+              </a>
+              <ul class="dropdown-menu dropdown-menu-dark">
+                <li><a class="dropdown-item" href="year-wise.html">Year-Wise PYQs</a></li>
+                <li><a class="dropdown-item" href="important.html">Important Questions</a></li>
+              </ul>
+            </li>
+          
+            <!-- Courses Dropdown -->
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="coursesDropdown" role="button" data-bs-toggle="dropdown">
+                Courses
+              </a>
+              <ul class="dropdown-menu dropdown-menu-dark">
+                <li><a class="dropdown-item" href="available-courses.html">Available Courses</a></li>
+                <li><a class="dropdown-item" href="progress.html">Progress Tracker</a></li>
+                <li><a class="dropdown-item" href="quizzes.html">Quizzes & Tests</a></li>
+              </ul>
+            </li>
+          
+            <!-- Share Dropdown -->
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="shareDropdown" role="button" data-bs-toggle="dropdown">
+                Share
+              </a>
+              <ul class="dropdown-menu dropdown-menu-dark">
+                <li><a class="dropdown-item" href="upload.html">Upload Notes</a></li>
+                <li><a class="dropdown-item" href="get-link.html">Get Shareable Links</a></li>
+              </ul>
+            </li>
+          </ul>
+          
+          
+          <!-- Profile -->
+          <div class="d-flex align-items-center">
+            <div class="dropdown">
+              <a href="#" class="d-flex align-items-center text-decoration-none dropdown-toggle" id="profileDropdown" data-bs-toggle="dropdown">
+                <div class="profile-circle">
+                  <span>U</span>
+                </div>
+                <span class="ms-2 d-none d-lg-inline">User</span>
+              </a>
+              <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end" aria-labelledby="profileDropdown">
+                <li><a class="dropdown-item" href="#">My Profile</a></li>
+                <li><a class="dropdown-item" href="#">Settings</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <!-- <li><a class="dropdown-item" href="#">Logout</a></li> -->
+                <li><a class="dropdown-item" href="login.html" id="logoutBtn">Logout</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+    
+    <!-- Side Menu/Offcanvas -->
+    <div class="offcanvas offcanvas-start text-bg-dark" tabindex="-1" id="sideMenu">
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title text-gradient">Menu</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body">
+        <div class="list-group list-group-flush border-0 bg-transparent">
+          <a href="#" class="list-group-item list-group-item-action bg-transparent text-light border-light">
+            <i class="fas fa-bookmark me-2"></i> Bookmarks
+          </a>
+          <a href="#" class="list-group-item list-group-item-action bg-transparent text-light border-light">
+            <i class="fas fa-history me-2"></i> Chat History
+          </a>
+          <a href="#" class="list-group-item list-group-item-action bg-transparent text-light border-light">
+            <i class="fas fa-redo me-2"></i> Reset Login
+          </a>
+          <a href="#" class="list-group-item list-group-item-action bg-transparent text-light border-light">
+            <i class="fas fa-cog me-2"></i> Settings
+          </a>
+          <!-- <a href="#" class="list-group-item list-group-item-action bg-transparent text-light border-light">
+            <i class="fas fa-sign-out-alt me-2"></i> Logout
+          </a> -->
+          <a href="login.html" class="list-group-item list-group-item-action bg-transparent text-light border-light" id="sideLogoutBtn">
+            <i class="fas fa-sign-out-alt me-2"></i> Logout
+          </a>          
+        </div>
+      </div>
+    </div>
+    
+    <!-- Main Content -->
+    <main class="container my-5 fade-in">
+      <div class="row justify-content-center">
+        <div class="col-lg-8">
+          <div class="text-center mb-5">
+            <h1 class="display-4 fw-bold mb-4 text-gradient">Welcome to Studynest</h1>
+            <p class="lead text-muted-light">Your AI-powered study companion for academic excellence</p>
+          </div>
+          
+          <!-- Chat Assistant -->
+          <div class="chat-container glass-card">
+            <div class="chat-messages" id="chatMessages">
+              <div class="message ai-message">
+                <div class="message-content">
+                  <p>Hello! I'm your AI study assistant. How can I help you today?</p>
+                </div>
+              </div>
+            </div>
+            
+            <div class="chat-input-container">
+              <div class="input-group">
+                <textarea id="userInput" class="form-control bg-light text-light" placeholder="Ask me anything about your studies..." rows="1"></textarea>
+                <button class="btn btn-voice" id="voiceInputBtn">
+                  <i class="fas fa-microphone"></i>
+                </button>
+                <button class="btn btn-send" id="sendMessageBtn">
+                  <i class="fas fa-paper-plane"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    
+    <footer class="text-center py-4 text-light muted small bg-dark">
+      © 2025 studynest. All rights reserved.
+    </footer>
+    
+    <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
+    
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Particles.js for background effects -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+
+    <script src="script.js"></script>
+  </body>
+</html>
