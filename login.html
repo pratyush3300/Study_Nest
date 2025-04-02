@@ -12,7 +12,7 @@
 
     <div class="container" id="container">
         <div class="form-container sign-up">
-            <form method="POST" action="backend/register.php">
+            <form method="POST" action="http://localhost:5500/register">
                 <h1>Create Account</h1>
                 <div class="social-icons">
                     <a href="#" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>
@@ -28,7 +28,7 @@
             </form>
         </div>
         <div class="form-container sign-in">
-            <form method="POST" action="backend/login.php">
+            <form method="POST" action="http://localhost:5500/login">
                 <h1>LogIn</h1>
                 <div class="social-icons">
                     <a href="#" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>
@@ -72,6 +72,7 @@
             container.classList.remove("active");
         });
     </script>
+    <script src="frontend.js"></script>
 </body>
 
 </html>

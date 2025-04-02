@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
           "density": {
             "enable": true,
             "value_area": 800
-          }
+          } 
         },
         "color": {
           "value": "#9061f9"

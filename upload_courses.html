@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Available Courses - StudyNest</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <style>
+        body {
+            background: linear-gradient(135deg, #0d1b2a, #161a30);
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: white;
+            position: relative;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .orb {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle, rgba(255, 105, 180, 0.8), rgba(255, 105, 180, 0));
+            border-radius: 50%;
+            opacity: 0.5;
+            animation: floatOrbs 3s infinite ease-in-out;
+        }
+
+        .orb1 { top: 10%; left: 15%; animation-delay: 0s; }
+        .orb2 { top: 30%; right: 10%; animation-delay: 2s; }
+        .orb3 { bottom: 20%; left: 40%; animation-delay: 4s; }
+        .orb4 { bottom: 10%; right: 30%; animation-delay: 6s; }
+
+        @keyframes floatOrbs {
+            0% { transform: translateY(0px) translateX(0px) scale(1); }
+            50% { transform: translateY(-30px) translateX(20px) scale(1.1); }
+            100% { transform: translateY(0px) translateX(0px) scale(1); }
+        }
+
+        .container-box {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0px 4px 15px rgba(255, 105, 180, 0.3);
+            width: 40%;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            position: relative;
+            z-index: 1;
+        }
+
+        .form-control {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: none;
+            transition: 0.3s;
+        }
+        .form-control:focus {
+            background: rgba(255, 255, 255, 0.2);
+            box-shadow: 0px 0px 5px pink;
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, #ff007f, #ff80bf);
+            border: none;
+            transition: 0.3s ease-in-out;
+        }
+        .btn-primary:hover {
+            transform: scale(1.05);
+            box-shadow: 0px 0px 10px #ff80bf;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="orb orb1"></div>
+    <div class="orb orb2"></div>
+    <div class="orb orb3"></div>
+    <div class="orb orb4"></div>
+
+    <div class="container-box">
+        <h3 class="text-center">Select Your Course</h3>
+        <form>
+            <div class="mb-3">
+                <label class="form-label">School</label>
+                <select class="form-control">
+                    <option>School of Computer Science</option>
+                    <option>School of Business</option>
+                    <option>School of Engineering</option>
+                    <option>School of Humanities</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Branch</label>
+                <select class="form-control">
+                    <option>Computer Science Engineering</option>
+                    <option>Information Technology</option>
+                    <option>Computer Sceince & System Engineering</option>
+                    <!-- <option>Mechanical Engineering</option> -->
+                </select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Semester</label>
+                <select class="form-control">
+                    <option>Semester 1</option>
+                    <option>Semester 2</option>
+                    <option>Semester 3</option>
+                    <option>Semester 4</option>
+                    <option>Semester 5</option>
+                    <option>Semester 6</option>
+
+                </select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Subject</label>
+                <select class="form-control">
+                    <option>Data Structures</option>
+                    <option>Machine Learning</option>
+                    <option>Database Management</option>
+                    <option>Computer Networks</option>
+                    <option>DBMS</option>
+                    <option>Operating System</option>
+
+                </select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Upload File</label>
+                <input type="file" class="form-control">
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Submit</button>
+        </form>
+    </div>
+
+</body>
+</html>

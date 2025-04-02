@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload PYQs</title>
+    <style>
+        body {
+            background: #121212;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+        .background {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            overflow: hidden;
+        }
+        .orb {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background: radial-gradient(circle, #1e90ff, #00ced1);
+            border-radius: 50%;
+            opacity: 0.8;
+            animation: float 5s infinite linear;
+        }
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(100px);
+            }
+            100% {
+                transform: translateY(0px);
+            }
+        }
+        .animated-btn {
+            background: linear-gradient(45deg, #1e90ff, #00ced1);
+            border: none;
+            padding: 10px 20px;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        .animated-btn:hover {
+            transform: scale(1.1);
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            background: #222;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .close-btn {
+            float: right;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        select, input[type="file"] {
+            display: block;
+            width: 100%;
+            margin: 10px 0;
+            padding: 8px;
+            background: #333;
+            color: #fff;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="background" id="background"></div>
+    <button id="uploadBtn" class="animated-btn">Upload PYQs</button>
+    
+    <div id="uploadModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h2>Upload Previous Year Questions</h2>
+            <label for="school">School</label>
+            <select id="school">
+                <option>Select School</option>
+                <option>Engineering</option>
+                <option>Science</option>
+                <option>Management</option>
+            </select>
+            <label for="branch">Branch</label>
+            <select id="branch">
+                <option>Select Branch</option>
+                <option>Computer Science Engeering</option>
+                <option>Computer Science & Sytem Engeering</option>
+                <option>Civil</option>
+                <option>Mechanical</option>
+            </select>
+            <label for="semester">Semester</label>
+            <select id="semester">
+                <option>Select Semester</option>
+                <option>1st</option>
+                <option>2nd</option>
+                <option>3rd</option>
+                <option>4th</option>
+                <option>5th</option>
+                <option>6th</option>
+            </select>
+            <label for="subject">Subject</label>
+            <select id="subject">
+                <option>Select Subject</option>
+                <option>Discrete Mathematics</option>
+                <option>Operating Systems</option>
+                <option>Data Structures</option>
+                <option>Machine Learning</option>
+                <option>Computer Networks</option>
+                <option>COA</option>
+                <option>DBMS</option>
+            </select>
+            <label for="file">Upload File</label>
+            <input type="file" id="file">
+            <button id="submitFile" class="animated-btn">Submit</button>
+        </div>
+    </div>
+    
+    <script>
+        document.getElementById('uploadBtn').addEventListener('click', function() {
+            document.getElementById('uploadModal').style.display = 'flex';
+        });
+        
+        document.querySelector('.close-btn').addEventListener('click', function() {
+            document.getElementById('uploadModal').style.display = 'none';
+        });
+        
+        document.getElementById('submitFile').addEventListener('click', function() {
+            alert('File uploaded successfully!');
+            document.getElementById('uploadModal').style.display = 'none';
+        });
+
+        function createOrbs() {
+            const background = document.getElementById('background');
+            for (let i = 0; i < 10; i++) {
+                let orb = document.createElement('div');
+                orb.classList.add('orb');
+                let size = Math.random() * 50 + 20;
+                orb.style.width = `${size}px`;
+                orb.style.height = `${size}px`;
+                orb.style.top = `${Math.random() * 100}vh`;
+                orb.style.left = `${Math.random() * 100}vw`;
+                orb.style.animationDuration = `${Math.random() * 5 + 5}s`;
+                background.appendChild(orb);
+            }
+        }
+        createOrbs();
+    </script>
+</body>
+</html>

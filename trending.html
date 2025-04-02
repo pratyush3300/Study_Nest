@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trending Topics</title>
+    <style>
+        body {
+            background: #0d0d0d;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+            overflow: hidden;
+            position: relative;
+        }
+        .container {
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            animation: fadeIn 1s ease-in-out;
+        }
+        .topics {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .topic {
+            background: linear-gradient(45deg, #1e90ff, #00ced1); 
+            padding: 15px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            font-size: 18px;
+            font-weight: bold;
+            color: #fff;
+            text-transform: uppercase;
+            animation: popIn 0.2s ease-in-out;
+        }
+        .topic:hover {
+            transform: scale(1.1);
+            box-shadow: 0px 0px 20px rgba(30, 144, 255, 0.8);
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes popIn {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+        .orb {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background: radial-gradient(circle, rgba(255,255,255,0.3), rgba(255,255,255,0));
+            border-radius: 50%;
+            opacity: 1.8;
+            animation: float 1s infinite linear;
+        }
+        .orb:nth-child(1) { top: 10%; left: 20%; animation-duration: 8s; }
+        .orb:nth-child(2) { top: 30%; left: 70%; animation-duration: 6s; }
+        .orb:nth-child(3) { top: 60%; left: 40%; animation-duration: 7s; }
+        .orb:nth-child(4) { top: 80%; left: 10%; animation-duration: 5s; }
+        @keyframes float {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-20px) translateX(10px); }
+            100% { transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <div class="orb"></div>
+    <div class="orb"></div>
+    <div class="orb"></div>
+    <div class="orb"></div>
+    <div class="container">
+        <h1>Trending Topics</h1>
+        <div class="topics">
+            <div class="topic">Artificial Intelligence</div>
+            <div class="topic">Blockchain Technology</div>
+            <div class="topic">Cybersecurity</div>
+            <div class="topic">Quantum Computing</div>
+            <div class="topic">Augmented Reality</div>
+            <div class="topic">Edge Computing</div>
+            <div class="topic">Web 3.0</div>
+            <div class="topic">Internet of Things</div>
+            <div class="topic">5G Technology</div>
+            <div class="topic">Cloud Computing</div>
+            <div class="topic">Big Data Analytics</div>
+            <div class="topic">Metaverse</div>
+        </div>
+    </div>
+</body>
+</html>
