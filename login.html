@@ -12,7 +12,7 @@
 
     <div class="container" id="container">
         <div class="form-container sign-up">
-            <form method="POST" action="http://localhost:5500/register">
+            <form class="sign-up-form">
                 <h1>Create Account</h1>
                 <div class="social-icons">
                     <a href="#" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>
@@ -28,8 +28,8 @@
             </form>
         </div>
         <div class="form-container sign-in">
-            <form method="POST" action="http://localhost:5500/login">
-                <h1>LogIn</h1>
+            <form class="sign-in-form">
+                <h1>Log In</h1>
                 <div class="social-icons">
                     <a href="#" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>
                     <a href="#" class="icon"><i class="fa-brands fa-facebook-f"></i></a>
@@ -72,7 +72,57 @@
             container.classList.remove("active");
         });
     </script>
-    <script src="frontend.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const signupForm = document.querySelector(".sign-up-form");
+            const loginForm = document.querySelector(".sign-in-form");
+
+            // Signup Event Listener
+            signupForm.addEventListener("submit", async (event) => {
+                event.preventDefault();
+
+                const email = signupForm.email.value;
+                const password = signupForm.password.value;
+
+                const response = await fetch("http://localhost:3000/api/signup", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ email, password }),
+                });
+
+                const data = await response.json();
+                if (response.ok) {
+                    localStorage.setItem("token", data.token);
+                    alert("Signup successful!");
+                    window.location.href = "chat-assistant.html";
+                } else {
+                    alert(data.error || "Signup failed!");
+                }
+            });
+
+            // Login Event Listener
+            loginForm.addEventListener("submit", async (event) => {
+                event.preventDefault();
+
+                const email = loginForm.email.value;
+                const password = loginForm.password.value;
+
+                const response = await fetch("http://localhost:3000/api/login", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ email, password }),
+                });
+
+                const data = await response.json();
+                if (response.ok && data.token) {
+                    localStorage.setItem("token", data.token);
+                    window.location.href = "index.html";
+                } else {
+                    alert(data.error || "Login failed!");
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>
