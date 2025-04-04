@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    
+    <style>
+        body {
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            color: #fff;
+            font-family: 'Arial', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0;
+            transition: background 0.5s ease, color 0.5s ease;
+        }
+        .container {
+            background: rgba(0, 0, 0, 0.85);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            max-width: 600px;
+            width: 100%;
+            animation: fadeIn 1s ease-in-out;
+            transition: background 0.5s ease;
+        }
+        .form-check-input {
+            background-color: #0f3460;
+            border: none;
+        }
+        .btn-primary {
+            background-color: #e94560;
+            border: none;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+        .btn-primary:hover {
+            background-color: #ff2e63;
+            transform: translateY(-2px);
+        }
+        .btn-danger {
+            background-color: #ff2e63;
+            border: none;
+        }
+        .btn-danger:hover {
+            background-color: #e94560;
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Light Mode Styles */
+        body.light-mode {
+            background: linear-gradient(135deg, #f0f0f0, #dcdcdc);
+            color: #000;
+        }
+        .light-mode .container {
+            background: rgba(255, 255, 255, 0.9);
+            color: #000;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+        }
+        .light-mode .btn-primary {
+            background-color: #007bff;
+        }
+        .light-mode .btn-primary:hover {
+            background-color: #0056b3;
+        }
+        .light-mode .btn-danger {
+            background-color: #dc3545;
+        }
+        .light-mode .btn-danger:hover {
+            background-color: #b02a37;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2 class="text-center mb-4">Settings</h2>
+
+        <!-- Theme Selection -->
+        <label class="form-label">Theme:</label>
+        <select id="themeSelect" class="form-select">
+            <option value="dark" selected>Dark Mode</option>
+            <option value="light">Light Mode</option>
+        </select>
+
+        <!-- Font Size -->
+        <label class="form-label mt-3">Font Size:</label>
+        <select id="fontSizeSelect" class="form-select">
+            <option value="small">Small</option>
+            <option value="medium" selected>Medium</option>
+            <option value="large">Large</option>
+        </select>
+
+        <!-- Download Preferences -->
+        <label class="form-label mt-3">Download Format:</label>
+        <select id="downloadFormatSelect" class="form-select">
+            <option value="pdf" selected>PDF</option>
+            <option value="zip">ZIP</option>
+        </select>
+
+        <!-- Notifications -->
+        <div class="form-check form-switch mt-3">
+            <input class="form-check-input" type="checkbox" id="notificationToggle" checked>
+            <label class="form-check-label" for="notificationToggle">Enable Notifications</label>
+        </div>
+
+        <!-- Language Selection -->
+        <label class="form-label mt-3">Language:</label>
+        <select id="languageSelect" class="form-select">
+            <option value="english" selected>English</option>
+            <option value="hindi">Hindi</option>
+            <option value="spanish">Spanish</option>
+        </select>
+
+        <!-- Clear Selections -->
+        <button class="btn btn-danger w-100 mt-4" onclick="clearSettings()">Reset Settings</button>
+
+        <a href="index.html" class="btn btn-primary w-100 mt-4">Back to Home</a>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const themeSelect = document.getElementById("themeSelect");
+            const fontSizeSelect = document.getElementById("fontSizeSelect");
+            
+            // Load stored theme
+            const savedTheme = localStorage.getItem("theme") || "dark";
+            document.body.classList.toggle("light-mode", savedTheme === "light");
+            themeSelect.value = savedTheme;
+
+            // Load stored font size
+            const savedFontSize = localStorage.getItem("fontSize") || "medium";
+            fontSizeSelect.value = savedFontSize;
+            document.body.style.fontSize = fontSizeMap[savedFontSize];
+
+            themeSelect.addEventListener("change", function () {
+                const selectedTheme = themeSelect.value;
+                document.body.classList.toggle("light-mode", selectedTheme === "light");
+                localStorage.setItem("theme", selectedTheme);
+            });
+
+            fontSizeSelect.addEventListener("change", function () {
+                const selectedSize = fontSizeSelect.value;
+                document.body.style.fontSize = fontSizeMap[selectedSize];
+                localStorage.setItem("fontSize", selectedSize);
+            });
+        });
+
+        const fontSizeMap = {
+            "small": "14px",
+            "medium": "16px",
+            "large": "18px"
+        };
+
+        function clearSettings() {
+            document.getElementById("themeSelect").value = "dark";
+            document.getElementById("fontSizeSelect").value = "medium";
+            document.getElementById("downloadFormatSelect").value = "pdf";
+            document.getElementById("notificationToggle").checked = true;
+            document.getElementById("languageSelect").value = "english";
+
+            localStorage.setItem("theme", "dark");
+            localStorage.setItem("fontSize", "medium");
+
+            document.body.classList.remove("light-mode");
+            document.body.style.fontSize = "16px";
+
+            alert("Settings Reset Successfully!");
+        }
+    </script>
+
+</body>
+</html>

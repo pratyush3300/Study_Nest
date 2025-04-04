@@ -315,6 +315,9 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }
   
+  
+
+
   // Add pulse animation class
   document.addEventListener('DOMContentLoaded', function() {
     // Add pulse animation class

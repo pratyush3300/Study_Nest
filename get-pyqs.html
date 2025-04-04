@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get Previous Year Question Papers</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    
+    <style>
+        body {
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            color: #fff;
+            font-family: 'Arial', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0;
+        }
+        .container {
+            background: rgba(0, 0, 0, 0.85);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            max-width: 600px;
+            width: 100%;
+            animation: fadeIn 1s ease-in-out;
+        }
+        .form-select {
+            margin-bottom: 20px;
+            background-color: #0f3460;
+            color: #fff;
+            border: none;
+            transition: background-color 0.3s ease;
+        }
+        
+        .form-select:focus {
+            background-color: #1a1a2e;
+            box-shadow: none;
+        }
+
+        .btn-primary {
+            background-color: #e94560;
+            border: none;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .btn-primary:hover {
+            background-color: #ff2e63;
+            transform: translateY(-2px);
+        }
+
+        #pyqLinks a {
+            display: block;
+            padding: 10px;
+            margin-top: 10px;
+            background-color: #0f3460;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        #pyqLinks a:hover {
+            background-color: #1a1a2e;
+            transform: translateY(-2px);
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2 class="text-center mb-4">Select Your Details</h2>
+
+        <select id="streamSelect" class="form-select">
+            <option value="" disabled selected>Select Your Stream</option>
+            <option value="engineering">Computer Science Engineering</option>
+            <option value="science">Computer Science & System Engineering</option>
+            <option value="engineering">Information Technology</option>
+            <option value="engineering">Civil Engineering</option>
+            <option value="engineering">Mechanical Engineering</option>
+        </select>
+
+        <select id="branchSelect" class="form-select" disabled>
+            <option value="" disabled selected>Select Your Branch</option>
+        </select>
+
+        <select id="semesterSelect" class="form-select" disabled>
+            <option value="" disabled selected>Select Your Semester</option>
+            <option value="sem1">Semester 1</option>
+            <option value="sem2">Semester 2</option>
+            <option value="sem3">Semester 3</option>
+            <option value="sem4">Semester 4</option>
+            <option value="sem5">Semester 5</option>
+            <option value="sem6">Semester 6</option>
+            <option value="sem7">Semester 7</option>
+            <option value="sem8">Semester 8</option>
+        </select>
+
+        <div id="pyqList" style="display: none;">
+            <h3 class="text-center mt-4">Available Previous Year Papers</h3>
+            <div id="pyqLinks"></div>
+        </div>
+
+        <a href="index.html" class="btn btn-primary mt-4 w-100">Back to Home</a>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const streamSelect = document.getElementById("streamSelect");
+            const branchSelect = document.getElementById("branchSelect");
+            const semesterSelect = document.getElementById("semesterSelect");
+            const pyqList = document.getElementById("pyqList");
+            const pyqLinks = document.getElementById("pyqLinks");
+
+            const branches = {
+                engineering: ["Computer Science (CSE)", "Information Technology (IT)", "Electronics & Communication (ECE)", "Mechanical Engineering", "Civil Engineering", "Electrical Engineering",],
+            };
+
+            const pyqData = {
+                "Computer Science (CSE)": { "sem1": ["CSE_2024.pdf", "CSE_2023.pdf"], "sem2": ["CSE_2022.pdf"] },
+                "Information Technology (IT)": { "sem1": ["IT_2024.pdf"], "sem3": ["IT_2022.pdf"] },
+                "Mechanical Engineering": { "sem1": ["MECH_2024.pdf"], "sem2": ["MECH_2023.pdf"] },
+            };
+
+            streamSelect.addEventListener("change", function () {
+                branchSelect.innerHTML = `<option value="" disabled selected>Select Your Branch</option>`;
+                semesterSelect.disabled = true;
+                pyqList.style.display = "none";
+
+                if (this.value in branches) {
+                    branches[this.value].forEach(branch => {
+                        let option = document.createElement("option");
+                        option.value = branch;
+                        option.textContent = branch;
+                        branchSelect.appendChild(option);
+                    });
+                    branchSelect.disabled = false;
+                } else {
+                    branchSelect.disabled = true;
+                }
+            });
+
+            branchSelect.addEventListener("change", function () {
+                semesterSelect.disabled = false;
+                pyqList.style.display = "none";
+            });
+
+            semesterSelect.addEventListener("change", function () {
+                const branch = branchSelect.value;
+                const semester = this.value;
+
+                if (branch && semester in (pyqData[branch] || {})) {
+                    pyqLinks.innerHTML = "";
+                    pyqData[branch][semester].forEach(file => {
+                        let link = document.createElement("a");
+                        link.href = `pyqs/${file}`;
+                        link.textContent = file;
+                        link.download = file;
+                        pyqLinks.appendChild(link);
+                    });
+                    pyqList.style.display = "block";
+                } else {
+                    pyqList.style.display = "none";
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
