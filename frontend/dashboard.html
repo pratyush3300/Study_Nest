@@ -3,73 +3,115 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
+    <title>Dashboard | Studynest</title>
     <style>
         body {
-            background: #121212;
-            color: #fff;
-            font-family: Arial, sans-serif;
             margin: 0;
-            padding: 0;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            background: linear-gradient(135deg, #0a0a0a, #121212, #1e1e1e);
+            background-size: 400% 400%;
+            color: #ffffff;
+            overflow-x: hidden;
+            position: relative;
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
-            height: 100vh;
-            overflow: hidden;
+            animation: gradientBackground 8s infinite alternate;
         }
-        .background {
+
+        @keyframes gradientBackground {
+            0% { background-position: 0% 0%; }
+            50% { background-position: 100% 100%; }
+            100% { background-position: 0% 0%; }
+        }
+
+        .particles-container {
             position: fixed;
             width: 100%;
             height: 100%;
             top: 0;
             left: 0;
             z-index: -1;
-            overflow: hidden;
         }
+
         .orb {
             position: absolute;
-            width: 50px;
-            height: 50px;
-            background: radial-gradient(circle, rgba(0, 150, 255, 0.8), rgba(0, 150, 255, 0.2));
             border-radius: 50%;
-            opacity: 0.8;
-            animation: float 3s infinite linear;
+            filter: blur(80px);
+            opacity: 0.5;
+            z-index: -1;
+            pointer-events: none;
+            animation: float 1s infinite ease-in-out;
         }
+
         @keyframes float {
             0% { transform: translateY(0px); }
             50% { transform: translateY(100px); }
             100% { transform: translateY(0px); }
         }
+
+        .particle {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: rgba(144, 97, 249, 0.8);
+            border-radius: 50%;
+            opacity: 0.7;
+            animation: moveParticles 2s infinite linear;
+        }
+
+        @keyframes moveParticles {
+            0% { transform: translateY(0px); opacity: 0.8; }
+            50% { transform: translateY(40px); opacity: 0.3; }
+            100% { transform: translateY(0px); opacity: 0.8; }
+        }
+
         .container {
             text-align: center;
             margin-top: 50px;
         }
+
         .section {
-            background: #222;
+            background: rgba(30, 30, 30, 0.4);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
             padding: 20px;
             margin: 20px;
-            border-radius: 8px;
+            border-radius: 12px;
             width: 80%;
+            transition: transform 0.3s ease;
         }
+
+        .section:hover {
+            transform: scale(1.05);
+        }
+
         .animated-btn {
-            background: linear-gradient(45deg, #1e90ff, #00ced1);
+            background: linear-gradient(135deg, #9061f9, #ff6a88);
             border: none;
-            padding: 10px 20px;
+            padding: 12px 24px;
             color: #fff;
             font-size: 16px;
+            border-radius: 8px;
             cursor: pointer;
-            transition: transform 0.3s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
             margin-top: 10px;
         }
+
         .animated-btn:hover {
             transform: scale(1.1);
+            box-shadow: 0 0 10px rgba(144, 97, 249, 0.8);
         }
     </style>
 </head>
 <body>
-    <div class="background" id="background"></div>
+    <div class="particles-container" id="particles-container"></div>
+    
     <div class="container">
-        <h1>Dashboard</h1>
+        <h1 class="text-gradient">Welcome to Studynest Dashboard</h1>
         <div class="section">
             <h2>Courses Overview</h2>
             <p>View and manage your available courses.</p>
@@ -86,23 +128,37 @@
             <button class="animated-btn">View Analytics</button>
         </div>
     </div>
-    
+
     <script>
-        function createOrbs() {
-            const background = document.getElementById('background');
-            for (let i = 0; i < 10; i++) {
+        function createBackgroundEffects() {
+            const container = document.getElementById('particles-container');
+
+            for (let i = 0; i < 6; i++) {
                 let orb = document.createElement('div');
                 orb.classList.add('orb');
-                let size = Math.random() * 50 + 20;
+                let size = Math.random() * 100 + 50;
                 orb.style.width = `${size}px`;
                 orb.style.height = `${size}px`;
                 orb.style.top = `${Math.random() * 100}vh`;
                 orb.style.left = `${Math.random() * 100}vw`;
-                orb.style.animationDuration = `${Math.random() * 5 + 5}s`;
-                background.appendChild(orb);
+                orb.style.background = `radial-gradient(circle, rgba(144, 97, 249, 0.6), rgba(255, 106, 136, 0.3))`;
+                orb.style.animationDuration = `${Math.random() * 3 + 2}s`;
+                container.appendChild(orb);
+            }
+
+            for (let i = 0; i < 20; i++) {
+                let particle = document.createElement('div');
+                particle.classList.add('particle');
+                let size = Math.random() * 6 + 3;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                particle.style.top = `${Math.random() * 100}vh`;
+                particle.style.left = `${Math.random() * 100}vw`;
+                particle.style.animationDuration = `${Math.random() * 6 + 3}s`;
+                container.appendChild(particle);
             }
         }
-        createOrbs();
+        createBackgroundEffects();
     </script>
 </body>
 </html>

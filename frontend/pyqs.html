@@ -5,16 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Upload PYQs</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap');
+
         body {
             background: #121212;
             color: #fff;
-            font-family: Arial, sans-serif;
+            font-family: 'Inter', sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
             overflow: hidden;
+            margin: 0;
+            flex-direction: column;
         }
+
         .background {
             position: fixed;
             width: 100%;
@@ -24,15 +29,18 @@
             z-index: -1;
             overflow: hidden;
         }
+
         .orb {
             position: absolute;
             width: 50px;
             height: 50px;
-            background: radial-gradient(circle, #1e90ff, #00ced1);
+            background: radial-gradient(circle, rgba(144, 97, 249, 0.6), rgba(255, 255, 255, 0.1));
             border-radius: 50%;
-            opacity: 0.8;
-            animation: float 5s infinite linear;
+            opacity: 0.6;
+            animation: float 6s infinite linear;
+            z-index: -1;
         }
+
         @keyframes float {
             0% {
                 transform: translateY(0px);
@@ -44,18 +52,25 @@
                 transform: translateY(0px);
             }
         }
+
         .animated-btn {
-            background: linear-gradient(45deg, #1e90ff, #00ced1);
+            background: linear-gradient(45deg, #9061f9, #ff6a88);
             border: none;
-            padding: 10px 20px;
+            padding: 12px 25px;
             color: #fff;
             font-size: 16px;
+            font-weight: bold;
             cursor: pointer;
-            transition: transform 0.3s ease;
+            border-radius: 8px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 5px 15px rgba(144, 97, 249, 0.5);
         }
+
         .animated-btn:hover {
             transform: scale(1.1);
+            box-shadow: 0 10px 20px rgba(144, 97, 249, 0.8);
         }
+
         .modal {
             display: none;
             position: fixed;
@@ -67,25 +82,39 @@
             justify-content: center;
             align-items: center;
         }
+
         .modal-content {
             background: #222;
-            padding: 20px;
+            padding: 25px;
             border-radius: 8px;
             text-align: center;
+            max-width: 500px;
+            width: 100%;
         }
+
         .close-btn {
-            float: right;
+            position: absolute;
+            top: 10px;
+            right: 10px;
             font-size: 24px;
             cursor: pointer;
         }
+
         select, input[type="file"] {
             display: block;
             width: 100%;
-            margin: 10px 0;
-            padding: 8px;
+            margin: 15px 0;
+            padding: 10px;
             background: #333;
             color: #fff;
             border: none;
+            border-radius: 8px;
+        }
+
+        label {
+            font-size: 18px;
+            margin: 10px 0;
+            color: #fff;
         }
     </style>
 </head>
@@ -96,7 +125,7 @@
     <div id="uploadModal" class="modal">
         <div class="modal-content">
             <span class="close-btn">&times;</span>
-            <h2>Upload Previous Year Questions</h2>
+            <h2 style="font-size: 24px; color: #fff;">Upload Previous Year Questions</h2>
             <label for="school">School</label>
             <select id="school">
                 <option>Select School</option>
@@ -107,8 +136,8 @@
             <label for="branch">Branch</label>
             <select id="branch">
                 <option>Select Branch</option>
-                <option>Computer Science Engeering</option>
-                <option>Computer Science & Sytem Engeering</option>
+                <option>Computer Science Engineering</option>
+                <option>Computer Science & System Engineering</option>
                 <option>Civil</option>
                 <option>Mechanical</option>
             </select>
@@ -143,11 +172,11 @@
         document.getElementById('uploadBtn').addEventListener('click', function() {
             document.getElementById('uploadModal').style.display = 'flex';
         });
-        
+
         document.querySelector('.close-btn').addEventListener('click', function() {
             document.getElementById('uploadModal').style.display = 'none';
         });
-        
+
         document.getElementById('submitFile').addEventListener('click', function() {
             alert('File uploaded successfully!');
             document.getElementById('uploadModal').style.display = 'none';

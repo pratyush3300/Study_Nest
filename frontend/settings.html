@@ -18,6 +18,7 @@
             margin: 0;
             transition: background 0.5s ease, color 0.5s ease;
         }
+
         .container {
             background: rgba(0, 0, 0, 0.85);
             padding: 30px;
@@ -27,27 +28,34 @@
             width: 100%;
             animation: fadeIn 1s ease-in-out;
             transition: background 0.5s ease;
+            z-index: 10;
         }
+
         .form-check-input {
             background-color: #0f3460;
             border: none;
         }
+
         .btn-primary {
             background-color: #e94560;
             border: none;
             transition: background-color 0.3s ease, transform 0.2s ease;
         }
+
         .btn-primary:hover {
             background-color: #ff2e63;
             transform: translateY(-2px);
         }
+
         .btn-danger {
             background-color: #ff2e63;
             border: none;
         }
+
         .btn-danger:hover {
             background-color: #e94560;
         }
+
         @keyframes fadeIn {
             from {
                 opacity: 0;
@@ -59,7 +67,6 @@
             }
         }
 
-        /* Light Mode Styles */
         body.light-mode {
             background: linear-gradient(135deg, #f0f0f0, #dcdcdc);
             color: #000;
@@ -88,14 +95,12 @@
     <div class="container">
         <h2 class="text-center mb-4">Settings</h2>
 
-        <!-- Theme Selection -->
         <label class="form-label">Theme:</label>
         <select id="themeSelect" class="form-select">
             <option value="dark" selected>Dark Mode</option>
             <option value="light">Light Mode</option>
         </select>
 
-        <!-- Font Size -->
         <label class="form-label mt-3">Font Size:</label>
         <select id="fontSizeSelect" class="form-select">
             <option value="small">Small</option>
@@ -103,28 +108,26 @@
             <option value="large">Large</option>
         </select>
 
-        <!-- Download Preferences -->
         <label class="form-label mt-3">Download Format:</label>
         <select id="downloadFormatSelect" class="form-select">
             <option value="pdf" selected>PDF</option>
             <option value="zip">ZIP</option>
         </select>
 
-        <!-- Notifications -->
         <div class="form-check form-switch mt-3">
             <input class="form-check-input" type="checkbox" id="notificationToggle" checked>
             <label class="form-check-label" for="notificationToggle">Enable Notifications</label>
         </div>
 
-        <!-- Language Selection -->
         <label class="form-label mt-3">Language:</label>
         <select id="languageSelect" class="form-select">
             <option value="english" selected>English</option>
             <option value="hindi">Hindi</option>
+            <option value="spanish">French</option>
             <option value="spanish">Spanish</option>
+
         </select>
 
-        <!-- Clear Selections -->
         <button class="btn btn-danger w-100 mt-4" onclick="clearSettings()">Reset Settings</button>
 
         <a href="index.html" class="btn btn-primary w-100 mt-4">Back to Home</a>
@@ -135,12 +138,10 @@
             const themeSelect = document.getElementById("themeSelect");
             const fontSizeSelect = document.getElementById("fontSizeSelect");
             
-            // Load stored theme
             const savedTheme = localStorage.getItem("theme") || "dark";
             document.body.classList.toggle("light-mode", savedTheme === "light");
             themeSelect.value = savedTheme;
 
-            // Load stored font size
             const savedFontSize = localStorage.getItem("fontSize") || "medium";
             fontSizeSelect.value = savedFontSize;
             document.body.style.fontSize = fontSizeMap[savedFontSize];
