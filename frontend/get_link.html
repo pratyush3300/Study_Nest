@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Get Your Link</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Roboto', sans-serif;
+    }
+
+    body {
+      height: 100vh;
+      background: linear-gradient(270deg, #1f1c2c, #1f1c2c);
+      background-size: 600% 600%;
+      animation: gradientBG 15s ease infinite;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      color: white;
+    }
+
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .container {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 16px;
+      padding: 40px;
+      width: 90%;
+      max-width: 500px;
+      backdrop-filter: blur(15px);
+      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+      text-align: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+      font-size: 2rem;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 20px;
+      border: none;
+      border-radius: 8px;
+      outline: none;
+      font-size: 1rem;
+    }
+
+    button {
+      background: #00c6ff;
+      background: linear-gradient(to right,#9061f9, #ff6a88, #9061f9);
+      border: none;
+      padding: 12px 20px;
+      margin: 8px 4px;
+      border-radius: 8px;
+      color: white;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(0, 198, 255, 0.6);
+    }
+
+    .share-buttons {
+      margin-top: 20px;
+    }
+
+    .back-button {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      padding: 10px 16px;
+      font-size: 0.9rem;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 8px;
+      text-decoration: none;
+      color: white;
+      z-index: 3;
+    }
+
+    .particles {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    .particle {
+      position: absolute;
+      background: white;
+      border-radius: 50%;
+      opacity: 0.15;
+      animation: floatUp 10s infinite ease-in-out;
+    }
+
+    @keyframes floatUp {
+      0% { transform: translateY(100vh) translateX(0); opacity: 0; }
+      50% { opacity: 0.3; }
+      100% { transform: translateY(-100vh) translateX(50px); opacity: 0; }
+    }
+  </style>
+</head>
+
+<body>
+  <a href="index.html" class="back-button">Back</a>
+
+  <div class="particles">
+    <div class="particle" style="width: 8px; height: 8px; left: 20%; animation-delay: 0s;"></div>
+    <div class="particle" style="width: 12px; height: 12px; left: 40%; animation-delay: 2s;"></div>
+    <div class="particle" style="width: 6px; height: 6px; left: 60%; animation-delay: 4s;"></div>
+    <div class="particle" style="width: 10px; height: 10px; left: 80%; animation-delay: 6s;"></div>
+    <div class="particle" style="width: 7px; height: 7px; left: 30%; animation-delay: 3s;"></div>
+    <div class="particle" style="width: 9px; height: 9px; left: 70%; animation-delay: 1s;"></div>
+  </div>
+
+  <div class="container">
+    <h1>Your Custom Link</h1>
+    <input type="text" id="generatedLink" readonly value="https://studynest-six.vercel.app/">
+    <button onclick="copyLink()">Copy Link</button>
+  
+    <div class="share-buttons">
+      <button onclick="shareWhatsApp()">Share on WhatsApp</button>
+      <button onclick="shareTelegram()">Share on Telegram</button>
+      <button onclick="shareEmail()">Share via Email</button>
+    </div>
+  </div>
+  
+  <script>
+    function copyLink() {
+      const linkInput = document.getElementById("generatedLink");
+      navigator.clipboard.writeText(linkInput.value).then(() => {
+        alert("Link copied to clipboard!");
+      }).catch(err => {
+        console.error('Failed to copy: ', err);
+      });
+    }
+  
+    function shareWhatsApp() {
+      const link = document.getElementById("generatedLink").value;
+      window.open(`https://wa.me/?text=${encodeURIComponent(link)}`, "_blank");
+    }
+  
+    function shareTelegram() {
+      const link = document.getElementById("generatedLink").value;
+      window.open(`https://t.me/share/url?url=${encodeURIComponent(link)}`, "_blank");
+    }
+  
+    function shareEmail() {
+      const link = document.getElementById("generatedLink").value;
+      window.open(`mailto:?subject=Check this out!&body=${encodeURIComponent(link)}`, "_blank");
+    }
+  </script>
+  
+</body>
+</html>
+

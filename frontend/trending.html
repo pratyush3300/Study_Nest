@@ -1,136 +1,205 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trending Topics</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap');
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Trending Topics</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap');
 
-        body {
-            background: #121212;
-            color: #ffffff;
-            font-family: 'Inter', sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            flex-direction: column;
-            overflow: hidden;
-            position: relative;
-            margin: 0;
-        }
+    body {
+      background: #121212;
+      color: #ffffff;
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
 
-        .container {
-            text-align: center;
-            position: relative;
-            z-index: 2;
-            max-width: 90%;
-            padding: 20px;
-        }
+    
+    .container {
+        text-align: center;
+        max-width: 1200px;
+        width: 100%;
+        padding: 60px 40px; 
+        box-sizing: border-box;
+    }
 
-        h1 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-            background: linear-gradient(90deg, #9061f9, #ff6a88);
-            background-size: 200% auto;
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: gradient 5s ease infinite, fadeIn 1s ease-in-out;
-        }
+    h1 {
+      font-size: 3.5rem;
+      margin-bottom: 60px;
+      background: linear-gradient(90deg, #9061f9, #ff6a88);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: gradient 5s ease infinite, fadeIn 1s ease-in-out;
+    }
 
-        .topics {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 20px;
-            margin-top: 20px;
-        }
+    .topics {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 90px; 
+  width: 100%;
+  padding: 20px; 
+  box-sizing: border-box;
+}
 
-        .topic {
-            background: linear-gradient(135deg, #9061f9, #ff6a88); 
-            padding: 15px 25px;
-            border-radius: 12px;
-            cursor: pointer;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            font-size: 18px;
-            font-weight: bold;
-            color: #fff;
-            text-transform: uppercase;
-            animation: popIn 0.2s ease-in-out;
-            box-shadow: 0 4px 15px rgba(144, 97, 249, 0.5);
-            max-width: 200px;
-            flex-grow: 1;
-        }
+    .flip-card {
+      background: transparent;
+      margin: 10px;
+      perspective: 1000px;
+      cursor: pointer;
+      position: relative;
+      transition: transform 0.8s ease, box-shadow 0.8s ease;
+    }
 
-        .topic:hover {
-            transform: scale(1.1);
-            box-shadow: 0px 0px 25px rgba(144, 97, 249, 0.8);
-        }
+    .flip-card-inner {
+      position: relative;
+      width: 100%;
+      height: 320px;
+      text-align: center;
+      transition: transform 0.8s ease;
+      transform-style: preserve-3d;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+      border-radius: 20px;
+    }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+    .flip-card.flipped .flip-card-inner {
+      transform: rotateY(180deg);
+      box-shadow: 0 0 40px #9061f9, 0 0 80px #ff6a88;
+    }
 
-        @keyframes popIn {
-            from { transform: scale(0.8); opacity: 0; }
-            to { transform: scale(1); opacity: 1; }
-        }
+    .flip-card-front, .flip-card-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      border-radius: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 30px;
+      color: #fff;
+      background: linear-gradient(135deg, #9061f9, #ff6a88);
+      box-shadow: 0 4px 20px rgba(144, 97, 249, 0.5);
+      transition: box-shadow 0.5s ease;
+      line-height: 1.8;
+      text-align: center;
+    }
 
-        @keyframes gradient {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
+    .flip-card-front {
+      font-size: 1.6rem;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
 
-        .orb {
-            position: absolute;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background: radial-gradient(circle, rgba(144, 97, 249, 0.6), rgba(255, 255, 255, 0.1));
-            filter: blur(80px);
-            opacity: 0.6;
-            z-index: -1;
-            pointer-events: none;
-            animation: floatOrbs 3s infinite alternate ease-in-out;
-        }
+    .flip-card-back {
+      transform: rotateY(180deg);
+      font-size: 1.1rem;
+    }
 
-        .orb:nth-child(1) { top: 10%; left: 10%; animation-duration: 4s; }
-        .orb:nth-child(2) { top: 40%; left: 80%; animation-duration: 3s; }
-        .orb:nth-child(3) { top: 70%; left: 50%; animation-duration: 4s; }
-        .orb:nth-child(4) { top: 80%; left: 30%; animation-duration: 3.5s; }
+    .flip-card:hover .flip-card-inner {
+      box-shadow: 0 0 40px #9061f9, 0 0 80px #ff6a88;
+    }
 
-        @keyframes floatOrbs {
-            from { transform: translateY(0px); }
-            to { transform: translateY(50px) translateX(20px); }
-        }
+    @keyframes gradient {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
 
-    </style>
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 2.5rem;
+      }
+      .flip-card-inner {
+        height: 260px;
+      }
+    }
+
+    ::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1e1e1e; 
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #9061f9, #ff6a88);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, #a175f9, #ff7e9f);
+}
+  </style>
 </head>
 <body>
-    <div class="orb"></div>
-    <div class="orb"></div>
-    <div class="orb"></div>
-    <div class="orb"></div>
-    <div class="container">
-        <h1>Trending Topics</h1>
-        <div class="topics">
-            <div class="topic">Artificial Intelligence</div>
-            <div class="topic">Blockchain Technology</div>
-            <div class="topic">Cybersecurity</div>
-            <div class="topic">Quantum Computing</div>
-            <div class="topic">Augmented Reality</div>
-            <div class="topic">Edge Computing</div>
-            <div class="topic">Web 3.0</div>
-            <div class="topic">Internet of Things</div>
-            <div class="topic">5G Technology</div>
-            <div class="topic">Cloud Computing</div>
-            <div class="topic">Big Data Analytics</div>
-            <div class="topic">Metaverse</div>
+  <div class="container">
+    <h1>Trending Topics</h1>
+    <div class="topics">
+        <div class="flip-card">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">AI Evolution</div>
+              <div class="flip-card-back">Artificial Intelligence is reshaping industries with automation, data analysis, and decision-making capabilities, empowering businesses to innovate and individuals to experience smarter technology in daily life.</div>
+            </div>
+          </div>
+
+        <div class="flip-card">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">Machine Learning</div>
+              <div class="flip-card-back">Machine Learning enables computers to learn from data and improve over time without explicit programming, powering recommendations, voice assistants, and predictions.</div>
+            </div>
+          </div>
+    
+          <div class="flip-card">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">5G Technology</div>
+              <div class="flip-card-back">5G offers ultra-fast data speeds, low latency, and massive connectivity, enabling innovations like smart cities, autonomous vehicles, and real-time IoT.</div>
+            </div>
+          </div>
+    
+          <div class="flip-card">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">Blockchain</div>
+              <div class="flip-card-back">Blockchain is a decentralized digital ledger that records transactions securely and transparently, powering cryptocurrencies, supply chain management, and smart contracts.</div>
+            </div>
+          </div>
+    
+          <div class="flip-card">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">Quantum Computing</div>
+              <div class="flip-card-back">Quantum Computing uses quantum bits to perform complex calculations at unprecedented speeds, potentially solving problems beyond the reach of classical computers.</div>
+            </div>
+          </div>
+    
+          <div class="flip-card">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">Cybersecurity</div>
+              <div class="flip-card-back">Cybersecurity protects systems, networks, and data from cyber threats, ensuring confidentiality, integrity, and availability in the digital world.</div>
+            </div>
+          </div>
+    
         </div>
-    </div>
-</body>
-</html>
+      </div>
+    
+      <script>
+        const flipCards = document.querySelectorAll('.flip-card');
+        flipCards.forEach(card => {
+          card.addEventListener('click', () => {
+            card.classList.toggle('flipped');
+          });
+        });
+      </script>
+    </body>
+    </html>
