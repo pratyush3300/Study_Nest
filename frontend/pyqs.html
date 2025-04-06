@@ -1,202 +1,218 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Upload PYQs</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap');
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Upload PYQs</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap');
 
-        body {
-            background: #121212;
-            color: #fff;
-            font-family: 'Inter', sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            overflow: hidden;
-            margin: 0;
-            flex-direction: column;
-        }
+    body {
+      background: #121212;
+      color: #fff;
+      font-family: 'Inter', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+      margin: 0;
+      flex-direction: column;
+    }
 
-        .background {
-            position: fixed;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            z-index: -1;
-            overflow: hidden;
-        }
+    .background {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      z-index: -1;
+      overflow: hidden;
+    }
 
-        .orb {
-            position: absolute;
-            width: 50px;
-            height: 50px;
-            background: radial-gradient(circle, rgba(144, 97, 249, 0.6), rgba(255, 255, 255, 0.1));
-            border-radius: 50%;
-            opacity: 0.6;
-            animation: float 6s infinite linear;
-            z-index: -1;
-        }
+    .orb {
+      position: absolute;
+      width: 50px;
+      height: 50px;
+      background: radial-gradient(circle, rgba(144, 97, 249, 0.6), rgba(255, 255, 255, 0.1));
+      border-radius: 50%;
+      opacity: 0.6;
+      animation: float 6s infinite linear;
+      z-index: -1;
+    }
 
-        @keyframes float {
-            0% {
-                transform: translateY(0px);
-            }
-            50% {
-                transform: translateY(100px);
-            }
-            100% {
-                transform: translateY(0px);
-            }
-        }
+    @keyframes float {
+      0% {
+        transform: translateY(0px);
+      }
+      50% {
+        transform: translateY(100px);
+      }
+      100% {
+        transform: translateY(0px);
+      }
+    }
 
-        .animated-btn {
-            background: linear-gradient(45deg, #9061f9, #ff6a88);
-            border: none;
-            padding: 12px 25px;
-            color: #fff;
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-            border-radius: 8px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            box-shadow: 0 5px 15px rgba(144, 97, 249, 0.5);
-        }
+    .animated-btn {
+      background: linear-gradient(45deg, #9061f9, #ff6a88);
+      border: none;
+      padding: 12px 25px;
+      color: #fff;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      border-radius: 8px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 5px 15px rgba(144, 97, 249, 0.5);
+    }
 
-        .animated-btn:hover {
-            transform: scale(1.1);
-            box-shadow: 0 10px 20px rgba(144, 97, 249, 0.8);
-        }
+    .animated-btn:hover {
+      transform: scale(1.1);
+      box-shadow: 0 10px 20px rgba(144, 97, 249, 0.8);
+    }
 
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            justify-content: center;
-            align-items: center;
-        }
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      justify-content: center;
+      align-items: center;
+    }
 
-        .modal-content {
-            background: #222;
-            padding: 25px;
-            border-radius: 8px;
-            text-align: center;
-            max-width: 500px;
-            width: 100%;
-        }
+    .modal-content {
+      background: #222;
+      padding: 25px;
+      border-radius: 8px;
+      text-align: center;
+      max-width: 500px;
+      width: 100%;
+      position: relative;
+    }
 
-        .close-btn {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            font-size: 24px;
-            cursor: pointer;
-        }
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-size: 24px;
+      cursor: pointer;
+    }
 
-        select, input[type="file"] {
-            display: block;
-            width: 100%;
-            margin: 15px 0;
-            padding: 10px;
-            background: #333;
-            color: #fff;
-            border: none;
-            border-radius: 8px;
-        }
+    select, input[type="file"] {
+      display: block;
+      width: 100%;
+      margin: 15px 0;
+      padding: 10px;
+      background: #333;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+    }
 
-        label {
-            font-size: 18px;
-            margin: 10px 0;
-            color: #fff;
-        }
-    </style>
+    label {
+      font-size: 18px;
+      margin: 10px 0;
+      color: #fff;
+    }
+  </style>
 </head>
 <body>
-    <div class="background" id="background"></div>
-    <button id="uploadBtn" class="animated-btn">Upload PYQs</button>
-    
-    <div id="uploadModal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn">&times;</span>
-            <h2 style="font-size: 24px; color: #fff;">Upload Previous Year Questions</h2>
-            <label for="school">School</label>
-            <select id="school">
-                <option>Select School</option>
-                <option>Engineering</option>
-                <option>Science</option>
-                <option>Management</option>
-            </select>
-            <label for="branch">Branch</label>
-            <select id="branch">
-                <option>Select Branch</option>
-                <option>Computer Science Engineering</option>
-                <option>Computer Science & System Engineering</option>
-                <option>Civil</option>
-                <option>Mechanical</option>
-            </select>
-            <label for="semester">Semester</label>
-            <select id="semester">
-                <option>Select Semester</option>
-                <option>1st</option>
-                <option>2nd</option>
-                <option>3rd</option>
-                <option>4th</option>
-                <option>5th</option>
-                <option>6th</option>
-            </select>
-            <label for="subject">Subject</label>
-            <select id="subject">
-                <option>Select Subject</option>
-                <option>Discrete Mathematics</option>
-                <option>Operating Systems</option>
-                <option>Data Structures</option>
-                <option>Machine Learning</option>
-                <option>Computer Networks</option>
-                <option>COA</option>
-                <option>DBMS</option>
-            </select>
-            <label for="file">Upload File</label>
-            <input type="file" id="file">
-            <button id="submitFile" class="animated-btn">Submit</button>
-        </div>
+  <div class="background" id="background"></div>
+
+  <button id="uploadBtn" class="animated-btn">Upload PYQs</button>
+
+  <div id="uploadModal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn">&times;</span>
+      <h2 style="font-size: 24px; color: #fff;">Upload Previous Year Questions</h2>
+
+      <label for="school">School</label>
+      <select id="school">
+        <option>Select School</option>
+        <option>Computer Science Engineering</option>
+        <option>Medical Science</option>
+        <option>Management</option>
+      </select>
+
+      <label for="branch">Branch</label>
+      <select id="branch">
+        <option>Select Branch</option>
+        <option>Computer Science Engineering</option>
+        <option>Computer Science & System Engineering</option>
+        <option>Information Technology</option>
+        <option>Mechanical Engineering</option>
+        <option>Civil Engineering</option>
+      </select>
+
+      <label for="semester">Semester</label>
+      <select id="semester">
+        <option>Select Semester</option>
+        <option>1st</option>
+        <option>2nd</option>
+        <option>3rd</option>
+        <option>4th</option>
+        <option>5th</option>
+        <option>6th</option>
+      </select>
+
+      <label for="subject">Subject</label>
+      <select id="subject">
+        <option>Select Subject</option>
+        <option>Discrete Mathematics</option>
+        <option>Design Analysis & Algorithms</option>
+        <option>Operating Systems</option>
+        <option>Data Structures</option>
+        <option>Machine Learning</option>
+        <option>Computer Networks</option>
+        <option>Artificial Intelligence</option>
+        <option>Computer Organization & Architecture</option>
+        <option>Database Management System</option>
+      </select>
+
+      <label for="file">Upload File</label>
+      <input type="file" id="file">
+
+      <button id="submitFile" class="animated-btn">Submit</button>
     </div>
-    
-    <script>
-        document.getElementById('uploadBtn').addEventListener('click', function() {
-            document.getElementById('uploadModal').style.display = 'flex';
-        });
+  </div>
 
-        document.querySelector('.close-btn').addEventListener('click', function() {
-            document.getElementById('uploadModal').style.display = 'none';
-        });
+  <script>
+    // Modal open
+    document.getElementById('uploadBtn').addEventListener('click', function() {
+      document.getElementById('uploadModal').style.display = 'flex';
+    });
 
-        document.getElementById('submitFile').addEventListener('click', function() {
-            alert('File uploaded successfully!');
-            document.getElementById('uploadModal').style.display = 'none';
-        });
+    // Modal close
+    document.querySelector('.close-btn').addEventListener('click', function() {
+      document.getElementById('uploadModal').style.display = 'none';
+    });
 
-        function createOrbs() {
-            const background = document.getElementById('background');
-            for (let i = 0; i < 10; i++) {
-                let orb = document.createElement('div');
-                orb.classList.add('orb');
-                let size = Math.random() * 50 + 20;
-                orb.style.width = `${size}px`;
-                orb.style.height = `${size}px`;
-                orb.style.top = `${Math.random() * 100}vh`;
-                orb.style.left = `${Math.random() * 100}vw`;
-                orb.style.animationDuration = `${Math.random() * 5 + 5}s`;
-                background.appendChild(orb);
-            }
-        }
-        createOrbs();
-    </script>
+    // File submit
+    document.getElementById('submitFile').addEventListener('click', function() {
+      alert('File uploaded successfully!');
+      document.getElementById('uploadModal').style.display = 'none';
+    });
+
+    // Background orbs
+    function createOrbs() {
+      const background = document.getElementById('background');
+      for (let i = 0; i < 10; i++) {
+        let orb = document.createElement('div');
+        orb.classList.add('orb');
+        let size = Math.random() * 50 + 20;
+        orb.style.width = `${size}px`;
+        orb.style.height = `${size}px`;
+        orb.style.top = `${Math.random() * 100}vh`;
+        orb.style.left = `${Math.random() * 100}vw`;
+        orb.style.animationDuration = `${Math.random() * 5 + 5}s`;
+        background.appendChild(orb);
+      }
+    }
+
+    createOrbs();
+  </script>
 </body>
-</html>
+</html> -->

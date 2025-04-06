@@ -1,247 +1,369 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Get Previous Year Question Papers</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Get PYQs</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background-color: #012b25;
+      color: #fff;
+      overflow: hidden;
+    }
 
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
-    
-    <style>
-        body {
-            background: linear-gradient(135deg, #1a1a2e, #16213e);
-            color: #fff;
-            font-family: 'Arial', sans-serif;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0;
-            overflow: hidden;
-        }
-        .background {
-            position: fixed;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            z-index: -1;
-            overflow: hidden;
-        }
-        .orb {
-            position: absolute;
-            width: 50px;
-            height: 50px;
-            background: radial-gradient(circle, rgba(144, 97, 249, 0.6), rgba(255, 255, 255, 0.1));
-            border-radius: 50%;
-            opacity: 0.8;
-            animation: float 6s infinite linear;
-        }
-        @keyframes float {
-            0% {
-                transform: translateY(0px);
-            }
-            50% {
-                transform: translateY(100px);
-            }
-            100% {
-                transform: translateY(0px);
-            }
-        }
-        .container {
-            background: rgba(0, 0, 0, 0.85);
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-            max-width: 600px;
-            width: 100%;
-            animation: fadeIn 1s ease-in-out;
-        }
-        .form-select {
-            margin-bottom: 20px;
-            background-color: #0f3460;
-            color: #fff;
-            border: none;
-            transition: background-color 0.3s ease;
-        }
-        
-        .form-select:focus {
-            background-color: #1a1a2e;
-            box-shadow: none;
-        }
+    .container {
+      max-width: 600px;
+      margin: 50px auto;
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
 
-        .btn-primary {
-            background-color: #e94560;
-            border: none;
-            transition: background-color 0.3s ease, transform 0.2s ease;
-        }
+    .selection {
+      margin-bottom: 20px;
+    }
 
-        .btn-primary:hover {
-            background-color: #ff2e63;
-            transform: translateY(-2px);
-        }
+    label {
+      display: block;
+      margin-bottom: 10px;
+      font-size: 18px;
+    }
 
-        #pyqLinks a {
-            display: block;
-            padding: 10px;
-            margin-top: 10px;
-            background-color: #0f3460;
-            color: #fff;
-            text-decoration: none;
-            border-radius: 5px;
-            transition: background-color 0.3s ease, transform 0.2s ease;
-        }
+    select {
+      width: 100%;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+    }
 
-        #pyqLinks a:hover {
-            background-color: #1a1a2e;
-            transform: translateY(-2px);
-        }
+    button {
+      padding: 10px 20px;
+      background-color: #04AA6D;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s;
+    }
 
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-    </style>
+    button:hover {
+      background-color: #037d54;
+    }
+
+    .background {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .circle {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.05);
+      animation: move 20s linear infinite;
+    }
+
+    @keyframes move {
+      0% {
+        transform: translateY(0) translateX(0);
+      }
+      100% {
+        transform: translateY(-1000px) translateX(1000px);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        width: 90%;
+        margin: 20px auto;
+        padding: 15px;
+      }
+    }
+
+    .uploaded-pyqs-container {
+    margin-top: 30px;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    color: #fff;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.uploaded-pyqs-container h3 {
+    margin-bottom: 15px;
+    color: #00fff7;
+}
+
+.uploaded-pyqs-container ul {
+    list-style: none;
+    padding: 0;
+}
+
+.uploaded-pyqs-container ul li {
+    background: rgba(0, 255, 247, 0.1);
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+.uploaded-pyqs-container ul li:hover {
+    background: rgba(0, 255, 247, 0.2);
+    cursor: pointer;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+  </style>
 </head>
 <body>
 
-    <div class="background" id="background"></div>
+  <div class="background">
+    <div class="circle" style="width: 100px; height: 100px; left: 10%; top: 20%;"></div>
+    <div class="circle" style="width: 150px; height: 150px; left: 70%; top: 40%;"></div>
+    <div class="circle" style="width: 80px; height: 80px; left: 50%; top: 70%;"></div>
+    <div class="circle" style="width: 120px; height: 120px; left: 30%; top: 80%;"></div>
+    <div class="circle" style="width: 60px; height: 60px; left: 80%; top: 10%;"></div>
+  </div>
 
-    <div class="container">
-        <h2 class="text-center mb-4">Select Your Details</h2>
+  <div class="container">
+    <h1>Select Here</h1>
 
-        <select id="streamSelect" class="form-select">
-            <option value="" disabled selected>Select Your Stream</option>
-            <option value="engineering">Computer Science Engineering</option>
-            <option value="science">Computer Science & System Engineering</option>
-            <option value="engineering">Information Technology</option>
-            <option value="engineering">Civil Engineering</option>
-            <option value="engineering">Mechanical Engineering</option>
-        </select>
-
-        <select id="branchSelect" class="form-select" disabled>
-            <option value="" disabled selected>Select Your Branch</option>
-        </select>
-
-        <select id="semesterSelect" class="form-select" disabled>
-            <option value="" disabled selected>Select Your Semester</option>
-            <option value="sem1">Semester 1</option>
-            <option value="sem2">Semester 2</option>
-            <option value="sem3">Semester 3</option>
-            <option value="sem4">Semester 4</option>
-            <option value="sem5">Semester 5</option>
-            <option value="sem6">Semester 6</option>
-            <option value="sem7">Semester 7</option>
-            <option value="sem8">Semester 8</option>
-        </select>
-
-        <div id="pyqList" style="display: none;">
-            <h3 class="text-center mt-4">Available Previous Year Papers</h3>
-            <div id="pyqLinks"></div>
-        </div>
-
-        <a href="index.html" class="btn btn-primary mt-4 w-100">Back to Home</a>
+    <div class="selection">
+      <label for="stream">Select Stream:</label>
+      <select id="stream" onchange="showSemester()">
+        <option value="">--Select Stream--</option>
+        <option value="engineering">Computer Science Engineering</option>
+        <option value="management">Computer Science & System Engineering</option>
+        <option value="science">Information Technology</option>
+        <option value="science">Mechanical Engineering</option>
+      </select>
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <div class="selection" id="semesterDiv" style="display:none;">
+      <label for="semester">Select Semester:</label>
+      <select id="semester" onchange="showSubjects()">
+        <option value="">--Select Semester--</option>
+        <option value="sem1">Semester 1</option>
+        <option value="sem2">Semester 2</option>
+        <option value="sem3">Semester 3</option>
+        <option value="sem4">Semester 4</option>
+        <option value="sem4">Semester 5</option>
+        <option value="sem4">Semester 6</option>
+      </select>
+    </div>
 
-    <script>
-        function createOrbs() {
-            const background = document.getElementById('background');
-            // Creating orbs on the right side
-            for (let i = 0; i < 10; i++) {
-                let orb = document.createElement('div');
-                orb.classList.add('orb');
-                let size = Math.random() * 50 + 20;
-                orb.style.width = `${size}px`;
-                orb.style.height = `${size}px`;
-                orb.style.top = `${Math.random() * 100}vh`;
-                orb.style.left = `${Math.random() * 50 + 50}vw`;  
-                orb.style.animationDuration = `${Math.random() * 5 + 5}s`;
-                background.appendChild(orb);
-            }
-            // Creating orbs on the left side
-            for (let i = 0; i < 10; i++) {
-                let orb = document.createElement('div');
-                orb.classList.add('orb');
-                let size = Math.random() * 50 + 20;
-                orb.style.width = `${size}px`;
-                orb.style.height = `${size}px`;
-                orb.style.top = `${Math.random() * 100}vh`;
-                orb.style.left = `${Math.random() * 50}vw`;  
-                orb.style.animationDuration = `${Math.random() * 5 + 5}s`;
-                background.appendChild(orb);
-            }
-        }
+    <div class="selection" id="subjectDiv" style="display:none;">
+        <label for="subject">Select Subject:</label>
+        <select id="subject" onchange="showProceedButton()">
+          <option value="">--Select Subject--</option>
+          <option value="discrete-mathematics">Discrete Mathematics</option>
+          <option value="daa">Design Analysis & Algorithms</option>
+          <option value="data-structures">Data Structures</option>
+          <option value="os">Operating Systems</option>
+          <option value="machine-learning">Machine Learning</option>
+          <option value="computer-networks">Computer Networks</option>
+          <option value="ai">Artificial Intelligence</option>
+          <option value="coa">Computer Organization & Architecture</option>
+          <option value="dbms">Database Management System</option>
+          <option value="dbms">Data Analytics</option>
 
-        createOrbs();
+        </select>
+      </div>      
 
-        document.addEventListener('DOMContentLoaded', function () {
-            const streamSelect = document.getElementById("streamSelect");
-            const branchSelect = document.getElementById("branchSelect");
-            const semesterSelect = document.getElementById("semesterSelect");
-            const pyqList = document.getElementById("pyqList");
-            const pyqLinks = document.getElementById("pyqLinks");
+    <div id="proceedButtonDiv" style="display:none;">
+      <button onclick="proceed()">Proceed</button>
+    </div>
+  </div>
 
-            const branches = {
-                engineering: ["Computer Science (CSE)", "Information Technology (IT)", "Electronics & Communication (ECE)", "Mechanical Engineering", "Civil Engineering", "Electrical Engineering",],
-            };
+  <div id="uploadedPyqsContainer" class="uploaded-pyqs-container">
+    <!-- Uploaded PYQs will be displayed here -->
+</div>
 
-            const pyqData = {
-                "Computer Science (CSE)": { "sem1": ["CSE_2024.pdf", "CSE_2023.pdf"], "sem2": ["CSE_2022.pdf"] },
-                "Information Technology (IT)": { "sem1": ["IT_2024.pdf"], "sem3": ["IT_2022.pdf"] },
-                "Mechanical Engineering": { "sem1": ["MECH_2024.pdf"], "sem2": ["MECH_2023.pdf"] },
-            };
 
-            streamSelect.addEventListener("change", function () {
-                branchSelect.innerHTML = `<option value="" disabled selected>Select Your Branch</option>`;
-                semesterSelect.disabled = true;
-                pyqList.style.display = "none";
+<script>
+    function showSemester() {
+      const stream = document.getElementById('stream').value;
+      if (stream !== "") {
+        document.getElementById('semesterDiv').style.display = 'block';
+      } else {
+        document.getElementById('semesterDiv').style.display = 'none';
+        document.getElementById('subjectDiv').style.display = 'none';
+        document.getElementById('proceedButtonDiv').style.display = 'none';
+        document.getElementById('uploadedPyqsContainer').innerHTML = '';
+      }
+    }
+  
+    function showSubjects() {
+      const semester = document.getElementById('semester').value;
+      if (semester !== "") {
+        document.getElementById('subjectDiv').style.display = 'block';
+      } else {
+        document.getElementById('subjectDiv').style.display = 'none';
+        document.getElementById('proceedButtonDiv').style.display = 'none';
+        document.getElementById('uploadedPyqsContainer').innerHTML = '';
+      }
+    }
+  
+    function showProceedButton() {
+      const subject = document.getElementById('subject').value;
+      if (subject !== "") {
+        document.getElementById('proceedButtonDiv').style.display = 'block';
+      } else {
+        document.getElementById('proceedButtonDiv').style.display = 'none';
+        document.getElementById('uploadedPyqsContainer').innerHTML = '';
+      }
+    }
+  
+    function proceed() {
+  const stream = document.getElementById('stream').value;
+  const semester = document.getElementById('semester').value;
+  const subject = document.getElementById('subject').value;
 
-                if (this.value in branches) {
-                    branches[this.value].forEach(branch => {
-                        let option = document.createElement("option");
-                        option.value = branch;
-                        option.textContent = branch;
-                        branchSelect.appendChild(option);
-                    });
-                    branchSelect.disabled = false;
-                } else {
-                    branchSelect.disabled = true;
-                }
-            });
+  // Map subjects to their Google Drive links
+  const driveLinks = {
+    "discrete-mathematics": "https://drive.google.com/your-link-for-discrete-mathematics",
+    "daa": "https://drive.google.com/drive/folders/1l4tRqcniwApN5-2oHXSQcXPM21SdNgiG?usp=sharing",
+    "data-structures": "https://drive.google.com/drive/folders/1dEawxhLIM6rlHYaPY9hC0IZq91gbNuKR?usp=sharing",
+    "os": "https://drive.google.com/drive/folders/1o78IWmY6RIwvMKDXBQl4iLZjwgmSv27q?usp=sharing",
+    "machine-learning": "https://drive.google.com/drive/folders/1-qR4gm7GXQuM94dwf33Q2Q2o7k_LiPlV?usp=sharing",
+    "computer-networks": "https://drive.google.com/drive/folders/1HEWPca4yoxGpc4-w4UUenTNlY_0BtMHw?usp=sharing",
+    "ai": "https://drive.google.com/drive/folders/130wtIXii9ZULh54-fJfx8oGa_EWofaGS?usp=sharing",
+    "coa": "https://drive.google.com/file/d/1HEh7CG9xXkO51x_NZbb36o5ROGpgrGZU/view?usp=sharing",
+    "dbms": "https://drive.google.com/drive/folders/1qlEqNB1-oI0UCjulOVArh781doJJuFWK?usp=sharing",
+    "data analytics": "https://drive.google.com/drive/folders/1bagYnIBCLYFACJDsNEZJ2nBKY-w43D9y?usp=sharing",
 
-            branchSelect.addEventListener("change", function () {
-                semesterSelect.disabled = false;
-                pyqList.style.display = "none";
-            });
+  };
 
-            semesterSelect.addEventListener("change", function () {
-                const branch = branchSelect.value;
-                const semester = this.value;
+  const link = driveLinks[subject];
 
-                if (branch && semester in (pyqData[branch] || {})) {
-                    pyqLinks.innerHTML = "";
-                    pyqData[branch][semester].forEach(file => {
-                        let link = document.createElement("a");
-                        link.href = `pyqs/${file}`;
-                        link.textContent = file;
-                        link.download = file;
-                        pyqLinks.appendChild(link);
-                    });
-                    pyqList.style.display = "block";
-                } else {
-                    pyqList.style.display = "none";
-                }
-            });
-        });
-    </script>
+  if (link) {
+    window.open(link, '_blank'); // Opens the Drive link in a new tab
+  } else {
+    alert("No link available for the selected subject!");
+  }
+}
+  </script>
+  
 
 </body>
 </html>
+
+
+<style>
+    body {
+        background: linear-gradient(135deg, #1a1a2e, #16213e);
+        color: #fff;
+        font-family: 'Arial', sans-serif;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0;
+        overflow: hidden;
+    }
+    .background {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        z-index: -1;
+        overflow: hidden;
+    }
+    .orb {
+        position: absolute;
+        width: 50px;
+        height: 50px;
+        background: radial-gradient(circle, rgba(144, 97, 249, 0.6), rgba(255, 255, 255, 0.1));
+        border-radius: 50%;
+        opacity: 0.8;
+        animation: float 6s infinite linear;
+    }
+    @keyframes float {
+        0% {
+            transform: translateY(0px);
+        }
+        50% {
+            transform: translateY(100px);
+        }
+        100% {
+            transform: translateY(0px);
+        }
+    }
+    .container {
+        background: rgba(0, 0, 0, 0.85);
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+        max-width: 600px;
+        width: 100%;
+        animation: fadeIn 1s ease-in-out;
+    }
+    .form-select {
+        margin-bottom: 20px;
+        background-color: #0f3460;
+        color: #fff;
+        border: none;
+        transition: background-color 0.3s ease;
+    }
+    
+    .form-select:focus {
+        background-color: #1a1a2e;
+        box-shadow: none;
+    }
+
+    .btn-primary {
+        background-color: #e94560;
+        border: none;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    .btn-primary:hover {
+        background-color: #ff2e63;
+        transform: translateY(-2px);
+    }
+
+    #pyqLinks a {
+        display: block;
+        padding: 10px;
+        margin-top: 10px;
+        background-color: #0f3460;
+        color: #fff;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    #pyqLinks a:hover {
+        background-color: #1a1a2e;
+        transform: translateY(-2px);
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+</style>
