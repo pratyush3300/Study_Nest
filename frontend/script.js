@@ -142,8 +142,8 @@ document.addEventListener('DOMContentLoaded', function() {
     orb.style.transition = `transform ${duration}s ease-in-out`;
     
     function moveOrb() {
-      const x = Math.random() * 20 - 10; // -10 to 10
-      const y = Math.random() * 20 - 10; // -10 to 10
+      const x = Math.random() * 20 - 10; 
+      const y = Math.random() * 20 - 10; 
       orb.style.transform = `translate(${x}%, ${y}%)`;
       
       // Schedule next movement
@@ -192,7 +192,7 @@ document.addEventListener('DOMContentLoaded', function() {
         recognition.onresult = function(event) {
           const transcript = event.results[0][0].transcript;
           userInput.value = transcript;
-          // Trigger input event to resize textarea
+          // Trigger karega input event ko to resize textarea
           userInput.dispatchEvent(new Event('input'));
         };
         
@@ -231,8 +231,8 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     function generateResponse(userMessage) {
-      // Convert to lowercase for easier keyword matching
       const msg = userMessage.toLowerCase();
+      
             if (msg.includes('study') || msg.includes('learn') || msg.includes('how to study')) {
         return "Effective study techniques include the Pomodoro method (25 minutes of focused study followed by a 5-minute break), active recall, spaced repetition, and teaching concepts to others. What subject are you studying?";
       }
