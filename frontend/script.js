@@ -232,7 +232,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     function generateResponse(userMessage) {
       const msg = userMessage.toLowerCase();
-      
+
             if (msg.includes('study') || msg.includes('learn') || msg.includes('how to study')) {
         return "Effective study techniques include the Pomodoro method (25 minutes of focused study followed by a 5-minute break), active recall, spaced repetition, and teaching concepts to others. What subject are you studying?";
       }
@@ -268,6 +268,9 @@ document.addEventListener('DOMContentLoaded', function() {
       }
       else if (msg.includes('bye') || msg.includes('goodbye')) {
         return "Goodbye! Good luck with your studies. Come back anytime you need help!";
+      }
+      else if (msg.includes('explain the project') || msg.includes('my project')) {
+        return "StudyMate is your all-in-one exam prep assistant. Instantly access PYQs with answers, get topic-wise notes, ask questions to a smart chatbot, and discover important questions based on past trends—all in one place.";
       }
       else {
         const genericResponses = [
