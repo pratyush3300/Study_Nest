@@ -107,11 +107,9 @@ document.addEventListener('DOMContentLoaded', function() {
   
     createFloatingOrbs();
   
-    // Handle chat functionality
     initializeChat();
   });
   
-  // floating colorful orbs in background
   function createFloatingOrbs() {
     const container = document.body;
     const colors = ['#9061f9', '#7367ff', '#ff6a88', '#6a88ff'];
@@ -142,7 +140,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const xMove = Math.random() * 20 - 10; 
     const yMove = Math.random() * 20 - 10;
     
-    // Set animation with CSS
     orb.style.transition = `transform ${duration}s ease-in-out`;
     
     // Function to continuously move the orb
@@ -155,7 +152,6 @@ document.addEventListener('DOMContentLoaded', function() {
       setTimeout(moveOrb, duration * 1000);
     }
     
-    // Start the initial movement
     moveOrb();
   }
   
@@ -310,7 +306,6 @@ document.addEventListener('DOMContentLoaded', function() {
       
       chatMessages.appendChild(messageDiv);
       
-      // Scroll to bottom
       chatMessages.scrollTop = chatMessages.scrollHeight;
     }
   }
@@ -340,20 +335,17 @@ document.addEventListener('DOMContentLoaded', function() {
       setTimeout(function () {
         greetingElement.textContent = '';
         typeWriter(getGreeting(), 0, speed);
-      }, 2500); // 3 seconds pause before restarting
+      }, 2500);
     }
   }
 
   // Start the typewriter effect on page load
   document.addEventListener('DOMContentLoaded', function () {
     const greetingText = getGreeting();
-    typeWriter(greetingText, 0, 100); // Speed: 100ms per character
+    typeWriter(greetingText, 0, 100); 
   });
   
-
-
-  // Add pulse animation class
-  document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function() {
     // Add pulse animation class
     function addPulseClass() {
       const pulse = document.createElement('style');
