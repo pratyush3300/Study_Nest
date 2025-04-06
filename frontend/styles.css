@@ -8,7 +8,6 @@ body {
   min-height: 100vh;
 }
 
-/* Navbar Animations */
 .navbar .nav-item a {
   opacity: 0;
   transform: translateY(20px);
@@ -16,7 +15,6 @@ body {
   animation-delay: 0.3s;
 }
 
-/* Animations */
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -28,7 +26,6 @@ body {
   }
 }
 
-/* Navbar Items Hover Effect */
 .navbar .nav-item a {
   transition: transform 0.3s ease, color 0.3s ease;
 }
@@ -38,12 +35,10 @@ body {
   color: #9061f9;
 }
 
-/* General Fade-In */
 .fade-in {
   animation: fadeIn 0.8s ease-out forwards;
 }
 
-/* Gradient Text */
 .text-gradient {
   background: linear-gradient(90deg, #9061f9, #ff6a88, #9061f9);
   background-size: 200% auto;
@@ -59,7 +54,6 @@ body {
   100% { background-position: 0% 50%; }
 }
 
-/* Background Particles */
 .particles-container {
   position: fixed;
   width: 100%;
@@ -87,7 +81,6 @@ body {
   font-weight: bold;
 }
 
-/* Offcanvas Menu */
 .offcanvas-header {
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
@@ -101,7 +94,6 @@ body {
   transform: translateX(5px);
 }
 
-/* Chat Component */
 .chat-container {
   border-radius: 16px;
   overflow: hidden;
