@@ -200,7 +200,6 @@ body {
   color: white;
 }
 
-/* Floating orbs effect */
 .orb {
   position: absolute;
   border-radius: 50%;
@@ -260,4 +259,61 @@ body {
 
 ::-webkit-scrollbar-thumb:hover {
   background: rgba(144, 97, 249, 0.8);
+}
+
+
+.animated-profile {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: linear-gradient(45deg, #6a11cb 0%, #2575fc 100%);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  animation: pulse 2s infinite;
+  box-shadow: 0 0 15px rgba(102, 126, 234, 0.6);
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(102, 126, 234, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 15px rgba(102, 126, 234, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(102, 126, 234, 0);
+  }
+}
+
+#dynamicGreeting {
+  font-size: 16px;
+  font-weight: bold;
+  background: linear-gradient(90deg, #ff8a00, #e52e71, #9b00ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shine 3s linear infinite, blinkCursor 0.7s step-end infinite;
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 2px solid #fff;
+}
+
+@keyframes shine {
+  0% {
+    background-position: 0% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+@keyframes blinkCursor {
+  0%, 100% {
+    border-color: transparent;
+  }
+  50% {
+    border-color: white;
+  }
 }

@@ -315,6 +315,40 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }
   
+  function getGreeting() {
+    const hours = new Date().getHours();
+    if (hours < 12) {
+      return 'Good Morning, Hope you had a productive day!';
+      // return 'Good Morning 🌅☀️🌙, Hope you had a productive day!';
+    } else if (hours < 18) {
+      return 'Good Afternoon, Hope you had a productive day!';
+    } else {
+      return 'Good Evening, Hope you had a productive day!';
+    }
+  }
+
+  function typeWriter(text, i, speed) {
+    const greetingElement = document.getElementById('dynamicGreeting');
+    if (i < text.length) {
+      greetingElement.textContent += text.charAt(i);
+      i++;
+      setTimeout(function () {
+        typeWriter(text, i, speed);
+      }, speed);
+    } else {
+      // Wait, then clear and retype for continuous effect
+      setTimeout(function () {
+        greetingElement.textContent = '';
+        typeWriter(getGreeting(), 0, speed);
+      }, 2500); // 3 seconds pause before restarting
+    }
+  }
+
+  // Start the typewriter effect on page load
+  document.addEventListener('DOMContentLoaded', function () {
+    const greetingText = getGreeting();
+    typeWriter(greetingText, 0, 100); // Speed: 100ms per character
+  });
   
 
 
