@@ -114,7 +114,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const container = document.body;
     const colors = ['#9061f9', '#7367ff', '#ff6a88', '#6a88ff'];
     
-    // Create 3 orbs
     for (let i = 0; i < 3; i++) {
       const orb = document.createElement('div');
       orb.classList.add('orb');
@@ -142,7 +141,6 @@ document.addEventListener('DOMContentLoaded', function() {
     
     orb.style.transition = `transform ${duration}s ease-in-out`;
     
-    // Function to continuously move the orb
     function moveOrb() {
       const x = Math.random() * 20 - 10; // -10 to 10
       const y = Math.random() * 20 - 10; // -10 to 10
@@ -155,7 +153,6 @@ document.addEventListener('DOMContentLoaded', function() {
     moveOrb();
   }
   
-  // Chat functionality
   function initializeChat() {
     const chatMessages = document.getElementById('chatMessages');
     const userInput = document.getElementById('userInput');
@@ -178,7 +175,6 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     });
     
-    // Voice input (if supported)
     voiceInputBtn.addEventListener('click', function() {
       if ('SpeechRecognition' in window || 'webkitSpeechRecognition' in window) {
         const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -237,9 +233,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function generateResponse(userMessage) {
       // Convert to lowercase for easier keyword matching
       const msg = userMessage.toLowerCase();
-      
-      // Check for common study-related questions
-      if (msg.includes('study') || msg.includes('learn') || msg.includes('how to study')) {
+            if (msg.includes('study') || msg.includes('learn') || msg.includes('how to study')) {
         return "Effective study techniques include the Pomodoro method (25 minutes of focused study followed by a 5-minute break), active recall, spaced repetition, and teaching concepts to others. What subject are you studying?";
       }
       else if (msg.includes('exam') || msg.includes('test') || msg.includes('preparation')) {
@@ -276,7 +270,6 @@ document.addEventListener('DOMContentLoaded', function() {
         return "Goodbye! Good luck with your studies. Come back anytime you need help!";
       }
       else {
-        // Generic responses for other queries
         const genericResponses = [
           "That's an interesting question about " + userMessage + ". Would you like me to provide some study resources on this topic?",
           "I understand you're asking about " + userMessage + ". This is an important concept. What specific aspect would you like to know more about?",

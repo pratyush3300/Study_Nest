@@ -4,7 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Get PYQs</title>
-  <link rel="stylesheet" href="style.css" />
   <style>
     body {
       margin: 0;
@@ -152,6 +151,7 @@
         <option value="engineering">Computer Science Engineering</option>
         <option value="management">Computer Science & System Engineering</option>
         <option value="science">Information Technology</option>
+        <option value="science">Civil Engineering</option>
         <option value="science">Mechanical Engineering</option>
       </select>
     </div>
@@ -183,7 +183,7 @@
           <option value="coa">Computer Organization & Architecture</option>
           <option value="dbms">Database Management System</option>
           <option value="dbms">Data Analytics</option>
-
+          <option value="dbms">Software Engineering</option>
         </select>
       </div>      
 
@@ -191,9 +191,7 @@
       <button onclick="proceed()">Proceed</button>
     </div>
   </div>
-
   <div id="uploadedPyqsContainer" class="uploaded-pyqs-container">
-    <!-- Uploaded PYQs will be displayed here -->
 </div>
 
 
@@ -236,7 +234,6 @@
   const semester = document.getElementById('semester').value;
   const subject = document.getElementById('subject').value;
 
-  // Map subjects to their Google Drive links
   const driveLinks = {
     "discrete-mathematics": "https://drive.google.com/your-link-for-discrete-mathematics",
     "daa": "https://drive.google.com/drive/folders/1l4tRqcniwApN5-2oHXSQcXPM21SdNgiG?usp=sharing",
@@ -254,16 +251,17 @@
   const link = driveLinks[subject];
 
   if (link) {
-    window.open(link, '_blank'); // Opens the Drive link in a new tab
+    window.open(link, '_blank');
   } else {
     alert("No link available for the selected subject!");
   }
 }
   </script>
-  
-
 </body>
 </html>
+
+
+
 
 
 <style>
