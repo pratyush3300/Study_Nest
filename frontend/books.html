@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Available Courses - StudyNest</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+  <style>
+    body {
+      background: linear-gradient(135deg, #0d1b2a, #161a30);
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      color: white;
+      position: relative;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .orb {
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      background: radial-gradient(circle, rgba(255, 105, 180, 0.8), rgba(255, 105, 180, 0));
+      border-radius: 50%;
+      opacity: 0.5;
+      animation: floatOrbs 3s infinite ease-in-out;
+    }
+
+    .orb1 { top: 10%; left: 15%; animation-delay: 0s; }
+    .orb2 { top: 30%; right: 10%; animation-delay: 2s; }
+    .orb3 { bottom: 20%; left: 40%; animation-delay: 4s; }
+    .orb4 { bottom: 10%; right: 30%; animation-delay: 6s; }
+
+    @keyframes floatOrbs {
+      0% { transform: translateY(0px) translateX(0px) scale(1); }
+      50% { transform: translateY(-30px) translateX(20px) scale(1.1); }
+      100% { transform: translateY(0px) translateX(0px) scale(1); }
+    }
+
+    .container-box {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0px 4px 15px rgba(255, 105, 180, 0.3);
+      width: 40%;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      position: relative;
+      z-index: 1;
+    }
+
+    .form-control {
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+      border: none;
+      transition: 0.3s;
+    }
+
+    .form-control:focus {
+      background: rgba(255, 255, 255, 0.2);
+      box-shadow: 0px 0px 5px pink;
+    }
+
+    .btn-primary {
+      background: linear-gradient(45deg, #ff007f, #ff80bf);
+      border: none;
+      transition: 0.3s ease-in-out;
+    }
+
+    .btn-primary:hover {
+      transform: scale(1.05);
+      box-shadow: 0px 0px 10px #ff80bf;
+    }
+
+    /* .step { display: none; }
+    .step.active { display: block; } */
+  </style>
+</head>
+<body>
+
+  <div class="orb orb1"></div>
+  <div class="orb orb2"></div>
+  <div class="orb orb3"></div>
+  <div class="orb orb4"></div>
+
+  <div class="container-box">
+    <h3 class="text-center">Select Your Course</h3>
+    <form>
+      <div class="mb-3 step active" id="step1">
+        <label class="form-label">School</label>
+        <select class="form-control" id="school">
+          <option value="">Select School</option>
+          <option>Computer Science Engineering</option>
+          <option>School of Management</option>
+          <option>Civil Engineering</option>
+          <option>Mechanical Engineering</option>
+        </select>
+      </div>
+
+      <div class="mb-3 step" id="step2">
+        <label class="form-label">Branch</label>
+        <select class="form-control" id="branch">
+          <option value="">Select Branch</option>
+          <option>Computer Science Engineering</option>
+          <option>Information Technology</option>
+          <option>Computer Science & System Engineering</option>
+          <option>Mechanical Engineering</option>
+        </select>
+      </div>
+
+      <div class="mb-3 step" id="step3">
+        <label class="form-label">Your Semester</label>
+        <select class="form-control" id="semester">
+          <option value="">Select Semester</option>
+          <option>Semester 1</option>
+          <option>Semester 2</option>
+          <option>Semester 3</option>
+          <option>Semester 4</option>
+          <option>Semester 5</option>
+          <option>Semester 6</option>
+        </select>
+      </div>
+
+      <div class="mb-3 step" id="step4">
+        <label class="form-label">Subject</label>
+        <select class="form-control" id="subject">
+          <option value="">Select Subject</option>
+          <option>Discrete Mathematics</option>
+          <option>Design Analysis & Algorithms</option>
+          <option>Data Structures</option>
+          <option>Operating Systems</option>
+          <option>Machine Learning</option>
+          <option>Computer Networks</option>
+          <option>Artificial Intelligence</option>
+          <option>Computer Organization & Architecture</option>
+          <option>Database Management System</option>
+          <option>Data Analytics</option>
+        </select>
+      </div>
+
+      <div class="step" id="step5">
+        <button type="submit" class="btn btn-primary w-100">Get Textbooks</button>
+      </div>
+    </form>
+  </div>
+
+  <script>  
+    const driveLinks = {
+      "Discrete Mathematics": "https://drive.google.com/drive/folders/1t-g9v8YCdPVod9d3fAXNBVXYMfNM7zIl?usp=sharing",
+      "Design Analysis & Algorithms": "https://drive.google.com/drive/folders/137kvRBhkSFPrrXzr7yjx0X3dGTaPiu1e?usp=sharing",
+      "Data Structures": "https://drive.google.com/drive/folders/1d8cyS87743QiexvgkgAFnhrCTXhoWWUf?usp=drive_link",
+      "Operating Systems": "https://drive.google.com/drive/folders/1Xq2B6Qwc_OGcLhFpayz6HzkWJ7v9mM8C?usp=sharing",
+      "Machine Learning": "https://drive.google.com/drive/folders/1w437l7I4TC4voGpHheoOA7xO3ZCBW2gx?usp=drive_link",
+      "Computer Networks": "https://drive.google.com/drive/folders/18-D1gzJSTYXQYNj4YjPpPuVbRVUDmcfM?usp=sharing",
+      "Artificial Intelligence": "https://drive.google.com/drive/folders/1oAxiDQpPKMizm1-xqgieLfq1YL6iiZAT?usp=sharing",
+      "Computer Organization & Architecture": "https://drive.google.com/drive/folders/1Mg05BkHAK0NfthmANJyNhLipGRdwf1Vc?usp=sharing",
+      "Database Management System": "https://drive.google.com/drive/folders/137kvRBhkSFPrrXzr7yjx0X3dGTaPiu1e?usp=sharing",
+      "Data Analytics": "https://drive.google.com/drive/folders/1QmwrwZEH3TuGUIgW09_YNpMQ6dp0TFpi?usp=sharing"
+    };
+  
+    document.querySelector('form').addEventListener('submit', function(e) {
+      e.preventDefault(); 
+  
+      const selectedSubject = subject.value;
+  
+      if (selectedSubject && driveLinks[selectedSubject]) {
+        window.open(driveLinks[selectedSubject], '_blank');
+      } else {
+        alert('Please select a valid subject to continue.');
+      }
+    });
+  </script>  
+</body>
+</html>
+
+
+<!-- // const school = document.getElementById('school');
+    // const branch = document.getElementById('branch');
+    // const semester = document.getElementById('semester');
+    // const subject = document.getElementById('subject');
+  
+    // const step2 = document.getElementById('step2');
+    // const step3 = document.getElementById('step3');
+    // const step4 = document.getElementById('step4');
+    // const step5 = document.getElementById('step5');
+  
+    // // Step control
+    // school.addEventListener('change', () => {
+    //   if (school.value !== '') {
+    //     step2.classList.add('active');
+    //   } else {
+    //     step2.classList.remove('active');
+    //     step3.classList.remove('active');
+    //     step4.classList.remove('active');
+    //     step5.classList.remove('active');
+    //   }
+    // });
+  
+    // branch.addEventListener('change', () => {
+    //   if (branch.value !== '') {
+    //     step3.classList.add('active');
+    //   } else {
+    //     step3.classList.remove('active');
+    //     step4.classList.remove('active');
+    //     step5.classList.remove('active');
+    //   }
+    // });
+  
+    // semester.addEventListener('change', () => {
+    //   if (semester.value !== '') {
+    //     step4.classList.add('active');
+    //   } else {
+    //     step4.classList.remove('active');
+    //     step5.classList.remove('active');
+    //   }
+    // });
+  
+    // subject.addEventListener('change', () => {
+    //   if (subject.value !== '') {
+    //     step5.classList.add('active');
+    //   } else {
+    //     step5.classList.remove('active');
+    //   }
+    // }); -->
