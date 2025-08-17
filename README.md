@@ -39,8 +39,6 @@ Built a full-featured academic support platform that allows students to access P
 
 📱 Mobile Compatibility: Making the platform fully functional across various screen sizes required additional responsive design considerations.
 
-🧪 User Journey Testing: Ensuring smooth navigation between pages, especially when going backward or changing inputs, involved thorough testing and debugging.
-
 
 ## ✨ Future Enhancements:
 - Smarter query understanding using NLP
