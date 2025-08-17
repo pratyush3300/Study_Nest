@@ -30,11 +30,16 @@ Built a full-featured academic support platform that allows students to access P
 
 ## 🧩 Challenges Faced:
 🔄 Dynamic Selection Flow: Creating a seamless multi-step selection process based on user input (from school to subject) required precise JavaScript handling and DOM updates.
+
 📁 Link Association: Associating each subject with the correct textbook link from Google Drive involved careful data mapping and organization.
+
 🧠 Voice Assistant Integration: Adding a voice assistant involved challenges related to speech processing, command recognition, and ensuring real-time response accuracy.
+
 🎨 Consistent UI Design: Maintaining a visually appealing and cohesive interface while supporting dynamic interactions demanded attention to styling and responsive layout.
+
 📱 Mobile Compatibility: Making the platform fully functional across various screen sizes required additional responsive design considerations.
-🧪 User Journey Testing: Ensuring smooth navigation between form steps, especially when going backward or changing inputs, involved thorough testing and debugging.
+
+🧪 User Journey Testing: Ensuring smooth navigation between pages, especially when going backward or changing inputs, involved thorough testing and debugging.
 
 
 ## ✨ Future Enhancements:
