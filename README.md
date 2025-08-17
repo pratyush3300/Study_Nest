@@ -1,4 +1,4 @@
-# 📚 StudyNest - Coursewise Textbook Access Portal
+# 📚 StudyNest - PYQs and Textbook Access Portal
 
 This project is a sleek and animated web interface where KIIT Students can instantly get access to their textbooks and PYQs via Google Drive links. 
 Built a full-featured academic support platform that allows students to access PYQs filtered by branch, semester, and subject, integrated with a voice assistant chatbot for seamless navigation and real-time query resolution.
